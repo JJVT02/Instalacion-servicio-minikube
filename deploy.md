@@ -1,4 +1,6 @@
 # Deployments
+## Actividad 1
+
 ## Paso 1: Crear el archivo YAML con la descripción del recurso Deployment
 
 1. Abre tu editor de texto preferido.
@@ -73,3 +75,46 @@ Verifica que se hayan eliminado todos los recursos ejecutando nuevamente los com
 **kubectl get replicaset** 
  
 **kubectl get pods**.
+
+
+# Actividad 2
+
+## Paso 1:Ejecuta el siguiente comando para crear el Deployment en Kubernetes:
+
+```bash
+kubectl apply -f deployment.yaml
+```
+Esto creará el Deployment con el nombre my-web-deployment.
+
+## Verifica que el Deployment se haya creado correctamente ejecutando:
+```bash
+kubectl get deployments
+```
+Deberías ver el my-web-deployment en la lista.
+
+## Verifica que los pods se hayan creado correctamente ejecutando:
+```bash
+kubectl get pods
+```
+Deberías ver los pods creados por el Deployment.
+
+Si necesitas exponer la aplicación fuera del clúster de Kubernetes, puedes crear un servicio para ello. Por ejemplo, para exponer la aplicación a través de un servicio de tipo NodePort, puedes ejecutar:
+```bash
+kubectl expose deployment my-web-deployment --type=NodePort --port=80
+```
+
+Esto creará un servicio que asignará un puerto aleatorio en cada nodo del clúster de Kubernetes al puerto 80 del Deployment.
+
+## Verifica que el servicio se haya creado correctamente ejecutando:
+```bash
+kubectl get services
+```
+Deberías ver el servicio recién creado y el puerto asignado.
+
+Si estás utilizando un entorno local de Kubernetes como Minikube o Docker Desktop, puedes obtener la URL para acceder a la aplicación ejecutando:
+```bash
+minikube service my-web-deployment --url
+```
+Esto te proporcionará la URL a la que puedes acceder en tu navegador para ver la aplicación.
+
+![](/img/act2.png)
