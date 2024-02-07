@@ -118,3 +118,77 @@ minikube service my-web-deployment --url
 Esto te proporcionará la URL a la que puedes acceder en tu navegador para ver la aplicación.
 
 ![](/img/act2.png)
+
+## Actividad 3
+
+## Paso 1: Crear los despliegues
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: guestbook-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: guestbook
+  template:
+    metadata:
+      labels:
+        app: guestbook
+    spec:
+      containers:
+        - name: guestbook-container
+          image: iesgn/guestbook
+          ports:
+            - containerPort: 5000
+```
+
+```bash
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+spec:
+  replicas: 1  # Puedes ajustar el número de réplicas según tus necesidades
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis-container
+          image: redis
+          ports:
+            - containerPort: 6379
+```
+
+
+```bash
+kubectl apply -f guestbook-deployment.yaml
+kubectl apply -f redis-deployment.yaml
+```
+
+
+## Paso 2 Comprobar los recursos creados:
+```bash
+kubectl get deployments
+kubectl get replicasets
+kubectl get pods
+```
+
+## Paso 3 Crear una redirección utilizando el port-forward:
+
+Utiliza el port-forwarding para acceder a la aplicación GuestBook a través del puerto 5000. Ejecuta el siguiente comando:
+
+```bash
+kubectl port-forward deployment/guestbook-deployment 5000:5000
+```
+
+go, intenta acceder a la aplicación GuestBook desde tu navegador web utilizando la dirección http://localhost:500
+
+![](/img/act3.png)
