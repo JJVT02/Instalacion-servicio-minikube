@@ -189,6 +189,6 @@ Utiliza el port-forwarding para acceder a la aplicación GuestBook a través del
 kubectl port-forward deployment/guestbook-deployment 5000:5000
 ```
 
-Luego, intenta acceder a la aplicación GuestBook desde tu navegador web utilizando la dirección http://localhost:500
+Luego, intenta acceder a la aplicación GuestBook desde tu navegador web utilizando la dirección http://localhost:5000
 
 ![](/img/act3.png)
