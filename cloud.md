@@ -59,3 +59,4 @@ Para acceder a la aplicación vamos a crear un recurso Ingress que tenemos defin
 ```bash
 kubectl apply -f nextcloud-ingress.yaml
 ```
+
