@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud-deployment
+  labels:
+    app: nextcloud
+    type: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+      type: frontend
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+        type: frontend
+    spec:
+      containers:
+        - name: nextcloud-container
+          image: nextcloud
+          ports:
+            - containerPort: 80
+              name: http-port
+          env:
+            - name: NEXTCLOUD_DB_HOST
+              value: mariadb-service
+            - name: NEXTCLOUD_DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: bd-datos
+                  key: bd_user
+            - name: NEXTCLOUD_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: bd-passwords
+                  key: bd_password
+            - name: NEXTCLOUD_DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: bd-datos
+                  key: bd_dbname

@@ -8,6 +8,7 @@
 ## 5. [Deployment](deploy.md)
 ## 6. [Lets-Chat](lets.md)
 ## 7. [Temperaturas](temp.md)
+## 8. [Nextcloud.md](cloud.md)
 ## 8. [Referencias](referencias.md)
 ## 9. [Autores](autores.md)
-## 10. [Licencia](licencia.md)
+## 10.[Licencia](licencia.md)
